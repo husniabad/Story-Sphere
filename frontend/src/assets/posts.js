@@ -16,7 +16,7 @@ export const posts =[
         userImage:"",
         username: "Husni Abad",
         createdAt: "5 days ago",
-        postImage: "https://firebasestorage.googleapis.com/v0/b/onlyuwuboi.appspot.com/o/images%2FScrum%20board_Flatline%201.png1649408621296?alt=media&token=45fe2f90-ddbb-49ac-b267-45fa8384bde7",
+        postImage: "http://localhost:8000/images/summer-jackets-1.jpg",
         content:"You can now apply for online classes",
         isLiked:false,
         likeNo: 4,

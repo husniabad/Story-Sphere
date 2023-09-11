@@ -1,15 +1,25 @@
-import { Explore, Group, Home, LibraryBooks, RecentActors } from '@mui/icons-material'
-import { Box, Typography } from '@mui/material'
+import { Explore, Group, Home, LibraryBooks, RecentActors, WidthFull } from '@mui/icons-material'
+import { Box, Container, Grid, Typography } from '@mui/material'
+import {useNavigate} from 'react-router-dom'
 import React from 'react'
 
+
 function LeftSideBar() {
+  const navigate = useNavigate();
   return (
-    <Box position='sticky'
+    <Box
+    //  position='sticky'
+    // sx={{
+    //   position:'fixed',
+    //   width: '350px'
+    // }}
+    pl={1}
     height='max-content'
     flexDirection='column'
     >
       <Box>my name is</Box>
       <Box
+      
       borderRadius="1rem"
       boxShadow='0 3px 10px rgb(0 0 0 / 0.2)'
       marginTop='2rem'
@@ -17,15 +27,20 @@ function LeftSideBar() {
       flexDirection='column'
       >
         <Box
+        
         display='flex'
         alignItems='center'
         height='4rem'
         gap='1rem'
         pl={1.5}
+        bgcolor='grey.200'  
         sx={{
           ":hover":{
             bgcolor:'grey.200'
           }
+        }}
+        onClick={() => {
+          navigate("/")
         }}
         
 
@@ -42,7 +57,9 @@ function LeftSideBar() {
             bgcolor:'grey.200'
           }
         }}
-
+        onClick={() => {
+          navigate("/explore")
+        }}
         
 
          ><Explore fontSize='large'/><Typography variant='h5'>Explore</Typography>
@@ -58,7 +75,7 @@ function LeftSideBar() {
             bgcolor:'grey.200'
           }
         }}
-
+        
         
 
          ><LibraryBooks fontSize='large'/><Typography variant='h5'>Library</Typography>
@@ -97,7 +114,7 @@ function LeftSideBar() {
 
       </Box>
     </Box>
-  )
+ )
 }
 
 export default LeftSideBar

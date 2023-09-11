@@ -5,8 +5,8 @@ import LeftSideBar from '../components/LeftSideBar'
 
 function Home() {
   return (
-    <Grid container spacing={4} >
-        <Grid item md={3} xs={12} >
+    <Grid container spacing={4} mt={4} >
+        <Grid item md={3} xs={12}>
             <LeftSideBar />   
         </Grid>
         <Grid item md={6} >
@@ -15,9 +15,10 @@ function Home() {
         </Grid>
         
         <Grid item md={3} >
-         
+          <Box paddingLeft='3rem'>
 
           Right
+          </Box>
         </Grid>
     </Grid>
   )

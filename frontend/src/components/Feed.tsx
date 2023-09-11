@@ -37,11 +37,26 @@ import {
   BookmarkBorder,
 } from '@mui/icons-material';
 
-import { posts } from '../assets/posts';
+import axios from 'axios'
+
+// import { posts } from '../assets/posts';
+
 
 
 
 function Feed() {
+  const [posts, setPosts] = React.useState<string[]>([])
+
+  React.useEffect(() => {
+    async function getPosts() {
+      const {data} = await axios.get('http://127.0.0.1:8000/api/')
+      setPosts(data)
+    }
+    getPosts()
+  },[])
+
+
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -60,6 +75,7 @@ function Feed() {
   };
 
   const handleReportClose = () => {
+    // alert("do you want to cancel")
     setIsOpen(false);
   };
 
@@ -94,11 +110,11 @@ function Feed() {
               // paddingTop="1rem"
             >
               <Tooltip
-                title={post.username}
+                title={post.user.username}
                 enterDelay={300}
                 leaveDelay={200}>
                 <Avatar
-                  alt={post.username}
+                  alt={post.user.username}
                   src='nay'
                   sx={{ width: 56, height: 56, bgcolor: deepOrange[500] }}
                 />
@@ -107,11 +123,11 @@ function Feed() {
                 display='flex'
                 marginLeft='1rem'
                 flexDirection='column'>
-                <Typography variant='h6'>{post.username}</Typography>
+                <Typography variant='h6'>{post.user.username}</Typography>
                 <Typography
                   variant='subtitle2'
                   color='textSecondary'>
-                  {post.createdAt}
+                  {post.formatted_created_at}
                 </Typography>
               </Box>
             </Box>
@@ -166,13 +182,13 @@ function Feed() {
                 alignItems='center'>
                 <Tooltip title='like'>
                   <IconButton>
-                    {post.isLiked ? <Favorite /> : <FavoriteBorder />}
+                    {post.numLikes ? <Favorite /> : <FavoriteBorder />}
                   </IconButton>
                 </Tooltip>
                 <Typography
                   variant='h6'
                   color='grey.600'>
-                  {post.likeNo}
+                  {post.numLikes}
                 </Typography>
               </Box>
               <Box
@@ -186,7 +202,7 @@ function Feed() {
                 <Typography
                   variant='h6'
                   color='grey.600'>
-                  {post.commentNo}
+                  {post.numComments}
                 </Typography>
               </Box>
               <Box
@@ -267,7 +283,7 @@ function Feed() {
             <Box>
               <Tooltip title='add to bookmarkd'>
                 <IconButton>
-                  {post.bookmark ? <Bookmark /> : <BookmarkBorder />}
+                  {false ? <Bookmark /> : <BookmarkBorder />}
                 </IconButton>
               </Tooltip>
             </Box>
